@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bell — Quantum AI by Entangled Code</title>
+  <meta name="description" content="Bell is a quantum AI assistant that answers real quantum questions using QRL — the Quantum Relational Language. Ask in plain English, get physics-grounded answers." />
+  <style>
+    :root {
+      --bg: #08080f;
+      --surface: #0f0f1a;
+      --surface2: #14141f;
+      --border: #1e1e30;
+      --primary: #6d28d9;
+      --primary-glow: rgba(109, 40, 217, 0.25);
+      --accent: #06b6d4;
+      --accent-glow: rgba(6, 182, 212, 0.15);
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --muted2: #94a3b8;
+      --code-bg: #0d1117;
+      --code-text: #7dd3fc;
+      --code-comment: #4b5563;
+      --radius: 10px;
+      --radius-lg: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 8, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo .bell-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    .nav-links a { color: var(--muted2); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+    .btn-primary:hover {
+      background: #7c3aed;
+      box-shadow: 0 0 30px var(--primary-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--muted);
+      background: var(--surface);
+    }
+
+    .btn-lg {
+      padding: 0.75rem 1.75rem;
+      font-size: 1rem;
+      border-radius: var(--radius-lg);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(109, 40, 217, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted2);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      max-width: 900px;
+    }
+
+    h1 .highlight {
+      background: linear-gradient(135deg, #a78bfa, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      color: var(--muted2);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+
+    /* ── Example chat ── */
+    .hero-demo {
+      width: 100%;
+      max-width: 680px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .demo-bar {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .demo-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .demo-bar .dot.r { background: #ff5f57; }
+    .demo-bar .dot.y { background: #febc2e; }
+    .demo-bar .dot.g { background: #28c840; }
+    .demo-bar .title {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: monospace;
+    }
+
+    .demo-body { padding: 1.25rem; font-size: 0.875rem; }
+
+    .demo-msg {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .demo-msg .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .avatar.user { background: var(--primary); color: #fff; }
+    .avatar.bell { background: linear-gradient(135deg, #06b6d4, #6d28d9); color: #fff; }
+
+    .demo-msg .bubble { flex: 1; color: var(--muted2); line-height: 1.5; }
+    .demo-msg .bubble strong { color: var(--text); }
+
+    .demo-code {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+      font-size: 0.78rem;
+      color: var(--code-text);
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+
+    .demo-code .cm { color: var(--code-comment); }
+
+    .demo-answer {
+      background: rgba(6, 182, 212, 0.06);
+      border: 1px solid rgba(6, 182, 212, 0.15);
+      border-radius: 6px;
+      padding: 0.6rem 0.9rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Sections ── */
+    section { padding: 5rem 2rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted2);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── Capabilities ── */
+    .caps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .cap-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .cap-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .cap-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(109,40,217,0.15), rgba(6,182,212,0.08));
+      border: 1px solid rgba(109,40,217,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+    }
+
+    .cap-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: url(#icon-grad);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .cap-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .cap-card p {
+      font-size: 0.875rem;
+      color: var(--muted2);
+      line-height: 1.6;
+    }
+
+    /* ── Examples ── */
+    #examples { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .example-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .example-card:hover { border-color: var(--muted); }
+
+    .example-domain {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .example-q {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .example-a {
+      font-size: 0.8rem;
+      color: var(--muted2);
+      line-height: 1.55;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+    }
+
+    .example-a strong { color: var(--accent); }
+
+    .example-card.coming-soon {
+      opacity: 0.6;
+      border-style: dashed;
+      cursor: default;
+    }
+
+    .example-card.coming-soon:hover { border-color: var(--border); }
+
+    .coming-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(109,40,217,0.12);
+      border: 1px solid rgba(109,40,217,0.3);
+      color: #a78bfa;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 100px;
+      margin-bottom: 0.6rem;
+      float: right;
+    }
+
+    /* ── How it works ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary-glow);
+      border: 1px solid var(--primary);
+      color: #a78bfa;
+      font-weight: 700;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step h3 { font-size: 1.05rem; font-weight: 600; }
+    .step p { font-size: 0.875rem; color: var(--muted2); line-height: 1.6; }
+
+    /* ── QRL section ── */
+    #qrl { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .qrl-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .qrl-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .qrl-code-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .qrl-code-bar {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-family: monospace;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .qrl-code-body {
+      padding: 1.25rem;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--code-text);
+    }
+
+    .qrl-code-body .kw { color: #c084fc; }
+    .qrl-code-body .cm { color: #374151; }
+    .qrl-code-body .num { color: #fb923c; }
+    .qrl-code-body .fn { color: #67e8f9; }
+    .qrl-code-body .str { color: #86efac; }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 7rem 2rem;
+    }
+
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { color: var(--muted2); margin-bottom: 2.5rem; font-size: 1.05rem; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 640px) {
+      footer { flex-direction: column; align-items: flex-start; }
+      .nav-links .hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav>
+    <div class="nav-logo">
+      <div class="bell-dot"></div>
+      Bell
+      <span style="color: var(--muted); font-weight: 400; font-size: 0.8rem;">by Entangled Code</span>
+    </div>
+    <div class="nav-links">
+      <a href="#capabilities" class="hide-mobile">Capabilities</a>
+      <a href="#examples" class="hide-mobile">Examples</a>
+      <a href="#qrl" class="hide-mobile">QRL</a>
+      <a href="https://bell.entangledcode.dev/login" class="btn btn-outline">Sign in</a>
+      <a href="https://bell.entangledcode.dev/register" class="btn btn-primary">Try Bell</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-badge">
+      <div class="dot"></div>
+      Quantum AI — Early Access
+    </div>
+
+    <h1>Ask quantum questions.<br><span class="highlight">Get quantum answers.</span></h1>
+
+    <p class="hero-sub">
+      Bell is a quantum AI assistant powered by QRL — the Quantum Relational Language.
+      Describe a quantum problem in plain English. Bell writes the physics, runs the code, and explains the result.
+    </p>
+
+    <div class="hero-cta">
+      <a href="https://bell.entangledcode.dev/register" class="btn btn-primary btn-lg">Try Bell for free</a>
+      <a href="#examples" class="btn btn-outline btn-lg">See examples</a>
+    </div>
+
+    <!-- Demo window -->
+    <div class="hero-demo">
+      <div class="demo-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="title">bell.entangledcode.dev</div>
+      </div>
+      <div class="demo-body">
+        <div class="demo-msg">
+          <div class="avatar user">D</div>
+          <div class="bubble">Is there genuine quantum entanglement here? Does this system violate the Bell inequality?</div>
+        </div>
+        <div class="demo-msg">
+          <div class="avatar bell">B</div>
+          <div class="bubble">
+            <div class="demo-code"><span class="cm"># Running CHSH Bell test — 2000 trials</span>
+measured = chsh_test(trials=<span style="color:#fb923c">2000</span>)
+result = {
+  <span style="color:#86efac">"S"</span>: round(measured.S, <span style="color:#fb923c">4</span>),
+  <span style="color:#86efac">"violates_classical"</span>: measured.S &gt; <span style="color:#fb923c">2.0</span>,
+}</div>
+            <div class="demo-answer">
+              S = 2.831 — the Bell inequality <strong>IS violated</strong> (classical bound = 2.0).
+              This confirms genuine quantum entanglement: no classical model can reproduce these correlations.
+              The theoretical maximum (Tsirelson bound) is 2.828.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Capabilities ── -->
+  <section id="capabilities">
+    <div class="container">
+      <div class="section-label">What Bell can do</div>
+      <h2>Quantum reasoning, grounded in physics</h2>
+      <p class="section-sub">Bell doesn't guess. Every answer comes from running real QRL code — mathematical models of quantum systems.</p>
+
+      <!-- SVG gradient shared by all icons -->
+      <svg width="0" height="0" style="position:absolute">
+        <defs>
+          <linearGradient id="icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#a78bfa"/>
+            <stop offset="100%" stop-color="#06b6d4"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div class="caps-grid">
+        <div class="cap-card">
+          <div class="cap-icon">
+            <!-- Entanglement: two correlated sine waves -->
+            <svg viewBox="0 0 24 24">
+              <path d="M2 12 C5 6 8 6 12 12 S19 18 22 12"/>
+              <path d="M2 12 C5 18 8 18 12 12 S19 6 22 12" opacity="0.5"/>
+              <circle cx="12" cy="12" r="1.5" fill="url(#icon-grad)" stroke="none"/>
+            </svg>
+          </div>
+          <h3>Entanglement & Bell tests</h3>
+          <p>Verify quantum entanglement with CHSH and Mermin inequalities. Compute CHSH parameter S, check Tsirelson bound violations, test GHZ paradox correlations.</p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon">
+            <!-- Network: 4-node graph topology -->
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="4"  r="2" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="4"  cy="16" r="2" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="20" cy="16" r="2" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="12" cy="20" r="2" fill="url(#icon-grad)" stroke="none"/>
+              <line x1="12" y1="6"    x2="5.4"  y2="14.4"/>
+              <line x1="12" y1="6"    x2="18.6" y2="14.4"/>
+              <line x1="5.8" y1="17"  x2="10"   y2="19.3"/>
+              <line x1="18.2" y1="17" x2="14"   y2="19.3"/>
+              <line x1="6" y1="16" x2="18" y2="16" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+          <h3>Quantum network analysis</h3>
+          <p>Model realistic quantum networks with fiber channels, repeater nodes, and decoherence. Compute entanglement fidelity, coherent information, and channel capacity over any topology.</p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon">
+            <!-- Causal DAG: directed acyclic graph -->
+            <svg viewBox="0 0 24 24">
+              <circle cx="5"  cy="12" r="2" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="12" cy="5"  r="2" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="19" cy="12" r="2" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="12" cy="19" r="2" fill="url(#icon-grad)" stroke="none"/>
+              <line x1="7"    y1="11.2" x2="10.3" y2="6.8"/>
+              <line x1="7"    y1="12.8" x2="10.3" y2="17.2"/>
+              <line x1="13.7" y1="6.8"  x2="17"   y2="11.2"/>
+              <line x1="13.7" y1="17.2" x2="17"   y2="12.8"/>
+              <polyline points="16,11 17,12 16,13" fill="none"/>
+            </svg>
+          </div>
+          <h3>Causal reasoning</h3>
+          <p>Apply quantum do-calculus: identify bottleneck links, compute causal effects of interventions, distinguish observational from interventional quantum states.</p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon">
+            <!-- Shield with checkmark -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2 L20 5.5 V11.5 C20 16.2 16.4 20.4 12 22 C7.6 20.4 4 16.2 4 11.5 V5.5 Z"/>
+              <polyline points="8.5,12 11,14.5 15.5,9.5"/>
+            </svg>
+          </div>
+          <h3>Security analysis</h3>
+          <p>Determine whether an eavesdropper can intercept a quantum channel using d-separation on causal graphs. Model any network topology and find vulnerabilities.</p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon">
+            <!-- MBQC: 3x3 cluster state lattice -->
+            <svg viewBox="0 0 24 24">
+              <circle cx="5"  cy="5"  r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="12" cy="5"  r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="19" cy="5"  r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="5"  cy="12" r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="12" cy="12" r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="19" cy="12" r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="5"  cy="19" r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="12" cy="19" r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="19" cy="19" r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <line x1="6.5"  y1="5"  x2="10.5" y2="5"/>
+              <line x1="13.5" y1="5"  x2="17.5" y2="5"/>
+              <line x1="6.5"  y1="12" x2="10.5" y2="12"/>
+              <line x1="13.5" y1="12" x2="17.5" y2="12"/>
+              <line x1="6.5"  y1="19" x2="10.5" y2="19"/>
+              <line x1="13.5" y1="19" x2="17.5" y2="19"/>
+              <line x1="5"  y1="6.5"  x2="5"  y2="10.5"/>
+              <line x1="12" y1="6.5"  x2="12" y2="10.5"/>
+              <line x1="19" y1="6.5"  x2="19" y2="10.5"/>
+              <line x1="5"  y1="13.5" x2="5"  y2="17.5"/>
+              <line x1="12" y1="13.5" x2="12" y2="17.5"/>
+              <line x1="19" y1="13.5" x2="19" y2="17.5"/>
+            </svg>
+          </div>
+          <h3>MBQC compilation</h3>
+          <p>Compile quantum relations directly to measurement-based quantum computation patterns. Generate graph states, teleport quantum information, run on photonic hardware.</p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon">
+            <!-- Photonic: beamsplitter schematic (2 input, 2 output modes) -->
+            <svg viewBox="0 0 24 24">
+              <line x1="2"  y1="8"  x2="10" y2="8"/>
+              <line x1="2"  y1="16" x2="10" y2="16"/>
+              <rect x="10" y="6" width="4" height="12" rx="1"/>
+              <line x1="14" y1="8"  x2="22" y2="16"/>
+              <line x1="14" y1="16" x2="22" y2="8"/>
+              <circle cx="22" cy="8"  r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="22" cy="16" r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="2"  cy="8"  r="1.5" fill="url(#icon-grad)" stroke="none"/>
+              <circle cx="2"  cy="16" r="1.5" fill="url(#icon-grad)" stroke="none"/>
+            </svg>
+          </div>
+          <h3>Photonic hardware</h3>
+          <p>QRL programs compile to Perceval circuits runnable on Quandela photonic QPUs. Bell's answers are verifiable on real quantum hardware — not just simulations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Examples ── -->
+  <section id="examples">
+    <div class="container">
+      <div class="section-label">Example queries</div>
+      <h2>What people ask Bell</h2>
+      <p class="section-sub">Ask in plain English. Bell handles the quantum mechanics.</p>
+
+      <div class="examples-grid">
+        <div class="example-card">
+          <div class="example-domain">Quantum foundations</div>
+          <div class="example-q">"Is there genuine quantum entanglement here? Does this system violate the Bell inequality?"</div>
+          <div class="example-a"><strong>S = 2.831</strong> — Bell inequality violated (classical bound = 2.0). Genuine entanglement confirmed. Tsirelson bound: 2.828.</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-domain">Quantum networks</div>
+          <div class="example-q">"Can Alice and Bob reliably share quantum entanglement over a 3-node fiber network — 80 km per hop?"</div>
+          <div class="example-a">Entanglement fidelity = <strong>78.4%</strong> over 160 km. Channel is usable: coherent information = 0.312 bits/use. Error correction recommended.</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-domain">Network optimisation</div>
+          <div class="example-q">"We have a 3-node quantum network. Where should we invest to most improve performance?"</div>
+          <div class="example-a">Bottleneck: <strong>Alice → Repeater</strong> (150 km, causal effect = 0.847 vs 0.213). Upgrading it raises fidelity from 61.2% to 89.7% (+28.5%).</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-domain">Security</div>
+          <div class="example-q">"In a 3-node network Alice → Relay → Bob, can an eavesdropper at the relay intercept the channel?"</div>
+          <div class="example-a">Relay: <strong>INSECURE</strong> — on the causal path. Bystander: secure — no causal connection. Use QKD or blind quantum computation to protect the relay.</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-domain">Causal inference</div>
+          <div class="example-q">"What happens to Bob's quantum state if we force-reset the relay to a maximally mixed state?"</div>
+          <div class="example-a">Relay reset <strong>changes Bob's state</strong>. Von Neumann entropy: 0.693 bits (observed) → 1.000 bits (intervened). Causal chain broken at relay.</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-domain">GHZ / Mermin</div>
+          <div class="example-q">"Show the GHZ paradox: prove quantum mechanics is inconsistent with local hidden variables."</div>
+          <div class="example-a">Mermin parameter M = <strong>4.0</strong> (classical limit = 2). XXX → +1 but XYY·YXY·YYX → −1. Logical contradiction — local realism fails.</div>
+        </div>
+
+        <div class="example-card coming-soon">
+          <span class="coming-badge">Coming soon</span>
+          <div class="example-domain">Quantum Chemistry</div>
+          <div class="example-q">"What is the entanglement between the two electrons in a hydrogen molecule at equilibrium bond length?"</div>
+          <div class="example-a">Compute electron correlation entropy in H₂. Identify which bond configurations exhibit strongest quantum correlations and how they evolve with internuclear distance.</div>
+        </div>
+
+        <div class="example-card coming-soon">
+          <span class="coming-badge">Coming soon</span>
+          <div class="example-domain">Materials Science</div>
+          <div class="example-q">"Is this 2D lattice in a topologically non-trivial phase? Where is the quantum phase transition?"</div>
+          <div class="example-a">Compute entanglement spectrum and topological invariants of a 2D Hubbard model. Detect phase boundaries via long-range entanglement signatures.</div>
+        </div>
+
+        <div class="example-card coming-soon">
+          <span class="coming-badge">Coming soon</span>
+          <div class="example-domain">Quantum Biology</div>
+          <div class="example-q">"Does quantum coherence in the FMO photosynthetic complex contribute to energy transfer efficiency?"</div>
+          <div class="example-a">Model the Fenna-Matthews-Olson complex as a quantum network. Compute coherence lifetimes, energy transfer fidelity, and the role of environmental noise.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How it works ── -->
+  <section id="how">
+    <div class="container">
+      <div class="section-label">How it works</div>
+      <h2>From question to physics in seconds</h2>
+      <p class="section-sub">Bell combines a language model with a real quantum physics engine. No hallucinated answers.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Ask in plain English</h3>
+          <p>Describe your quantum problem naturally. Bell understands quantum networks, entanglement, causal structures, and photonic hardware.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Bell writes QRL</h3>
+          <p>Bell generates Quantum Relational Language code — a precise mathematical model of your problem, not a prose summary.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>The code runs</h3>
+          <p>QRL executes against real quantum physics models. Entanglement fidelities, CHSH parameters, causal effects — all computed exactly.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>You get an answer</h3>
+          <p>A plain-English explanation of the result, grounded in the physics. Numbers you can trust, from code you can inspect.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QRL ── -->
+  <section id="qrl">
+    <div class="container">
+      <div class="qrl-inner">
+        <div>
+          <div class="section-label">Powered by QRL</div>
+          <h2>The Quantum Relational Language</h2>
+          <p style="color: var(--muted2); line-height: 1.7; margin-bottom: 1.75rem;">
+            QRL is a quantum programming language built from first principles of information theory
+            and relational physics. Where conventional quantum computing starts with classical bits
+            and applies gates, QRL starts with <em>quantum relations</em> — correlations between
+            systems that may be entangled, causal, or indefinite.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.75rem;">
+
+            <div style="display: flex; gap: 0.85rem; align-items: flex-start;">
+              <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(109,40,217,0.15); border: 1px solid rgba(109,40,217,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" stroke-width="2" stroke-linecap="round"><path d="M2 12 C5 6 8 6 12 12 S19 18 22 12"/><path d="M2 12 C5 18 8 18 12 12 S19 6 22 12" opacity="0.5"/></svg>
+              </div>
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem;">Relations-first, not gates-first</div>
+                <div style="font-size: 0.8rem; color: var(--muted2); line-height: 1.55;">Entanglement is defined directly as a <code style="background:var(--code-bg);padding:0.1rem 0.35rem;border-radius:4px;font-size:0.75rem;color:var(--code-text)">QuantumRelation</code> — a correlation between two systems. No circuit decomposition, no basis rotation, no gate sequences. The physics is the program.</div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.85rem; align-items: flex-start;">
+              <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(109,40,217,0.15); border: 1px solid rgba(109,40,217,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="12" y1="7" x2="5.8" y2="17.1"/><line x1="12" y1="7" x2="18.2" y2="17.1"/><line x1="7" y1="19" x2="17" y2="19" stroke-dasharray="2 2"/></svg>
+              </div>
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem;">Causal structure as a first-class concept</div>
+                <div style="font-size: 0.8rem; color: var(--muted2); line-height: 1.55;">QRL encodes causal relationships between quantum systems explicitly. Interventions, d-separation, and quantum do-calculus are built into the language — not bolted on as classical post-processing.</div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.85rem; align-items: flex-start;">
+              <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(109,40,217,0.15); border: 1px solid rgba(109,40,217,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" stroke-width="2" stroke-linecap="round"><rect x="10" y="5" width="4" height="14" rx="1"/><line x1="2" y1="8" x2="10" y2="8"/><line x1="2" y1="16" x2="10" y2="16"/><line x1="14" y1="8" x2="22" y2="16"/><line x1="14" y1="16" x2="22" y2="8"/></svg>
+              </div>
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem;">Compiles directly to photonic hardware</div>
+                <div style="font-size: 0.8rem; color: var(--muted2); line-height: 1.55;">QRL programs compile to MBQC measurement patterns and then to Perceval circuits — runnable on Quandela photonic QPUs. Bell states have been verified on <code style="background:var(--code-bg);padding:0.1rem 0.35rem;border-radius:4px;font-size:0.75rem;color:var(--code-text)">qpu:belenos</code>, Quandela's 12-qubit flagship QPU.</div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.85rem; align-items: flex-start;">
+              <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(109,40,217,0.15); border: 1px solid rgba(109,40,217,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" stroke-width="2" stroke-linecap="round"><path d="M12 2 L20 5.5 V11.5 C20 16.2 16.4 20.4 12 22 C7.6 20.4 4 16.2 4 11.5 V5.5 Z"/><polyline points="8.5,12 11,14.5 15.5,9.5"/></svg>
+              </div>
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem;">Peer-reviewed and open source</div>
+                <div style="font-size: 0.8rem; color: var(--muted2); line-height: 1.55;">QRL was presented at QPL 2026 (Quantum Physics and Logic, Amsterdam). The implementation — ~9,000 lines, 473 tests — is open source on GitHub and archived on Zenodo with a permanent DOI.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://doi.org/10.5281/zenodo.18292199" class="btn btn-outline" target="_blank" rel="noopener">Read the paper</a>
+            <a href="https://github.com/dcoldeira/quantum-relational-language" class="btn btn-outline" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </div>
+
+        <div class="qrl-code-block">
+          <div class="qrl-code-bar">
+            <span>bell_test.qrl</span>
+            <span>QRL</span>
+          </div>
+          <div class="qrl-code-body">
+<span class="cm"># Test Bell inequality — CHSH</span>
+measured = <span class="fn">chsh_test</span>(trials=<span class="num">2000</span>)
+
+result = {
+  <span class="str">"S"</span>: <span class="fn">round</span>(measured.S, <span class="num">4</span>),
+  <span class="str">"violates"</span>: measured.S &gt; <span class="num">2.0</span>,
+  <span class="str">"tsirelson"</span>: <span class="fn">theoretical_chsh</span>(),
+}
+
+<span class="cm"># S = 2.831 — entanglement confirmed</span>
+<span class="cm"># Classical bound = 2.0</span>
+<span class="cm"># Tsirelson bound = 2√2 ≈ 2.828</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="section-label">Get started</div>
+      <h2>Ready to ask quantum questions?</h2>
+      <p>Bell is free to try. No quantum background required.</p>
+      <a href="https://bell.entangledcode.dev/register" class="btn btn-primary btn-lg">Create a free account</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--muted2);">
+      <div class="bell-dot" style="width:6px; height:6px; border-radius:50%; background:var(--accent);"></div>
+      Entangled Code
+    </div>
+    <div class="footer-links">
+      <a href="https://bell.entangledcode.dev">Bell app</a>
+      <a href="https://dcoldeira.github.io">Blog</a>
+      <a href="https://doi.org/10.5281/zenodo.18292199" target="_blank" rel="noopener">Paper</a>
+      <a href="https://github.com/dcoldeira/quantum-relational-language" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:david@entangledcode.dev">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
