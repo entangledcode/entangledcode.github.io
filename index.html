@@ -550,7 +550,9 @@
 
     @media (max-width: 640px) {
       footer { flex-direction: column; align-items: flex-start; }
-      .nav-links .hide-mobile { display: none; }
+      .hide-mobile { display: none !important; }
+      .nav-links { gap: 0.5rem; }
+      .btn { padding: 0.45rem 0.85rem; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -561,7 +563,7 @@
     <div class="nav-logo">
       <div class="bell-dot"></div>
       Bell
-      <span style="color: var(--muted); font-weight: 400; font-size: 0.8rem;">by Entangled Code</span>
+      <span class="hide-mobile" style="color: var(--muted); font-weight: 400; font-size: 0.8rem;">by Entangled Code</span>
     </div>
     <div class="nav-links">
       <a href="#capabilities" class="hide-mobile">Capabilities</a>
