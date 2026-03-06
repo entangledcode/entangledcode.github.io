@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Entangled Code</title>
+  <style>
+    :root {
+      --bg: #08080f;
+      --surface: #0f0f1a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --muted2: #475569;
+      --primary: #7c3aed;
+      --accent: #06b6d4;
+      --border: #1e293b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; line-height: 1.7; }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 56px;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: var(--bg); z-index: 10;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; text-decoration: none; color: var(--text); }
+
+    main { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .updated { color: var(--muted2); font-size: 0.875rem; margin-bottom: 3rem; }
+    h2 { font-size: 1.1rem; font-weight: 600; margin: 2.5rem 0 0.75rem; color: var(--text); }
+    p { color: var(--muted); margin-bottom: 1rem; }
+    ul { color: var(--muted); padding-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.4rem; }
+    a { color: #a78bfa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight { color: var(--text); font-weight: 500; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted2);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="entangledcode-icon.svg" alt="" height="24">
+    entangled code
+  </a>
+</nav>
+
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: March 6, 2026</p>
+
+  <p>This policy describes how Entangled Code ("<span class="highlight">we</span>", "<span class="highlight">us</span>") handles data collected through the Bell platform at <a href="https://bell.entangledcode.dev">bell.entangledcode.dev</a>.</p>
+
+  <h2>1. Who we are</h2>
+  <p>Entangled Code is an independent research and software project operated by David Coldeira. Contact: <a href="mailto:david@entangledcode.dev">david@entangledcode.dev</a></p>
+
+  <h2>2. What data we collect</h2>
+  <ul>
+    <li><span class="highlight">Account data:</span> username, email address, hashed password</li>
+    <li><span class="highlight">Usage data:</span> queries you submit to Bell and the responses generated</li>
+    <li><span class="highlight">Session data:</span> a session token stored in your browser (30-day expiry)</li>
+  </ul>
+  <p>We do not collect IP addresses, device fingerprints, or third-party tracking data. We do not use cookies beyond the session token.</p>
+
+  <h2>3. Why we collect it</h2>
+  <p>Your data is processed to provide the Bell service you signed up for. The legal basis is <span class="highlight">Article 6(1)(b) GDPR</span> — processing necessary for the performance of a contract.</p>
+  <p>Query logs are also used to improve Bell's accuracy and to fine-tune the underlying language model. This is covered by the same legal basis as an integral part of the service.</p>
+
+  <h2>4. How long we keep it</h2>
+  <p>Account data and query history are retained for as long as your account is active. When you delete your account, all associated data (queries, projects, messages) is permanently deleted within 24 hours.</p>
+
+  <h2>5. Who we share it with</h2>
+  <p>Your queries are sent to <span class="highlight">Anthropic</span> (Claude API) to generate responses. Anthropic's data handling is governed by their <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">privacy policy</a>. We do not sell or share your data with any other third parties.</p>
+
+  <h2>6. Your rights</h2>
+  <p>Under GDPR you have the right to access, correct, or delete your data. To exercise these rights:</p>
+  <ul>
+    <li><span class="highlight">Delete your account:</span> contact <a href="mailto:david@entangledcode.dev">david@entangledcode.dev</a> with your username</li>
+    <li><span class="highlight">Export or correct your data:</span> email us and we will respond within 30 days</li>
+  </ul>
+
+  <h2>7. Security</h2>
+  <p>Passwords are stored as salted hashes. All traffic is encrypted via HTTPS (TLS 1.2+). The server is hosted on Hetzner Cloud in the EU (Helsinki, Finland).</p>
+
+  <h2>8. Changes to this policy</h2>
+  <p>We may update this policy. Material changes will be notified via email to registered users.</p>
+
+  <h2>9. Contact</h2>
+  <p><a href="mailto:david@entangledcode.dev">david@entangledcode.dev</a></p>
+</main>
+
+<footer>
+  &copy; 2026 Entangled Code — <a href="/">entangledcode.dev</a>
+</footer>
+
+</body>
+</html>
