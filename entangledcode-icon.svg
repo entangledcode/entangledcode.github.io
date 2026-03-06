@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="Entangled Code icon">
+  <title>Entangled Code</title>
+  <defs>
+    <filter id="eciGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Subtle fill areas -->
+  <path d="M 40,40 C 36,26 8,26 8,40 C 8,54 36,54 40,40"
+        fill="#7c3aed" opacity="0.08"/>
+  <path d="M 40,40 C 44,26 72,26 72,40 C 72,54 44,54 40,40"
+        fill="#06b6d4" opacity="0.08"/>
+
+  <g filter="url(#eciGlow)">
+    <!-- Left lobe (violet) -->
+    <path d="M 40,40 C 36,26 8,26 8,40 C 8,54 36,54 40,40"
+          fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/>
+    <!-- Right lobe (cyan) -->
+    <path d="M 40,40 C 44,26 72,26 72,40 C 72,54 44,54 40,40"
+          fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+    <!-- Left qubit dot -->
+    <circle cx="8" cy="40" r="4.5" fill="#8b5cf6"/>
+    <!-- Right qubit dot -->
+    <circle cx="72" cy="40" r="4.5" fill="#22d3ee"/>
+    <!-- Center crossing marker -->
+    <circle cx="40" cy="40" r="2.5" fill="#e2e8f0" opacity="0.65"/>
+  </g>
+</svg>

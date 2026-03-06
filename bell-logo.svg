@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" role="img" aria-label="Bell logo">
+  <title>Bell — Quantum Platform</title>
+  <defs>
+    <!-- Gradient for bell curve (spans icon region) -->
+    <linearGradient id="bCurve" x1="8" y1="0" x2="72" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <!-- Gradient for wordmark -->
+    <linearGradient id="bWord" x1="96" y1="0" x2="228" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="bGlow" x="-40%" y="-50%" width="180%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- === ICON: Gaussian Bell Curve === -->
+
+  <!-- Filled area under curve -->
+  <path d="M 8,57 C 20,57 26,12 40,12 C 54,12 60,57 72,57 L 72,61 L 8,61 Z"
+        fill="url(#bCurve)" opacity="0.09"/>
+
+  <g filter="url(#bGlow)">
+    <!-- Bell curve stroke -->
+    <path d="M 8,57 C 20,57 26,12 40,12 C 54,12 60,57 72,57"
+          fill="none" stroke="url(#bCurve)" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Baseline -->
+    <line x1="3" y1="61" x2="77" y2="61"
+          stroke="url(#bCurve)" stroke-width="1" opacity="0.3"/>
+    <!-- Peak dot (cyan) -->
+    <circle cx="40" cy="12" r="2.8" fill="#22d3ee" opacity="0.95"/>
+    <!-- Left tail dot (violet) -->
+    <circle cx="8" cy="57" r="1.8" fill="#7c3aed" opacity="0.65"/>
+    <!-- Right tail dot (cyan) -->
+    <circle cx="72" cy="57" r="1.8" fill="#06b6d4" opacity="0.65"/>
+  </g>
+
+  <!-- Divider line -->
+  <line x1="86" y1="9" x2="86" y2="63" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- === WORDMARK === -->
+  <text x="98" y="50"
+        font-family="'Inter', 'SF Pro Display', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="38" font-weight="700" letter-spacing="-1.5"
+        fill="url(#bWord)">Bell</text>
+
+  <!-- Tagline -->
+  <text x="100" y="63"
+        font-family="'Inter', system-ui, -apple-system, sans-serif"
+        font-size="7.5" font-weight="500" letter-spacing="3"
+        fill="#475569">QUANTUM PLATFORM</text>
+</svg>
