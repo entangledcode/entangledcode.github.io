@@ -33,17 +33,17 @@
   <!-- Width per lobe: 240, Height: 210 → ratio 1.14:1... -->
   <!-- Using correct flat lemniscate: control points pulled toward horizontal center -->
   <g filter="url(#glow)">
-    <!-- Left lobe fill — width 240, height 160 → 1.5:1 ratio -->
-    <path d="M 260,315 C 240,235 20,235 20,315 C 20,395 240,395 260,315"
+    <!-- Left lobe fill — width 240, height 120 → 2:1 ratio -->
+    <path d="M 260,315 C 240,255 20,255 20,315 C 20,375 240,375 260,315"
           fill="#7c3aed" opacity="0.1"/>
     <!-- Right lobe fill -->
-    <path d="M 260,315 C 280,235 500,235 500,315 C 500,395 280,395 260,315"
+    <path d="M 260,315 C 280,255 500,255 500,315 C 500,375 280,375 260,315"
           fill="#06b6d4" opacity="0.1"/>
     <!-- Left lobe stroke -->
-    <path d="M 260,315 C 240,235 20,235 20,315 C 20,395 240,395 260,315"
+    <path d="M 260,315 C 240,255 20,255 20,315 C 20,375 240,375 260,315"
           fill="none" stroke="#8b5cf6" stroke-width="8" stroke-linecap="round"/>
     <!-- Right lobe stroke -->
-    <path d="M 260,315 C 280,235 500,235 500,315 C 500,395 280,395 260,315"
+    <path d="M 260,315 C 280,255 500,255 500,315 C 500,375 280,375 260,315"
           fill="none" stroke="#06b6d4" stroke-width="8" stroke-linecap="round"/>
     <!-- Left qubit dot -->
     <circle cx="20" cy="315" r="15" fill="#8b5cf6"/>
