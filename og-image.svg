@@ -25,32 +25,28 @@
   <rect width="1200" height="630" fill="url(#bg)"/>
 
   <!-- Ambient glow blobs -->
-  <ellipse cx="260" cy="315" rx="280" ry="180" fill="#7c3aed" opacity="0.08" filter="url(#blob)"/>
-  <ellipse cx="260" cy="315" rx="180" ry="120" fill="#06b6d4" opacity="0.05" filter="url(#blob)"/>
+  <ellipse cx="260" cy="345" rx="280" ry="180" fill="#7c3aed" opacity="0.08" filter="url(#blob)"/>
+  <ellipse cx="260" cy="345" rx="180" ry="120" fill="#06b6d4" opacity="0.05" filter="url(#blob)"/>
 
-  <!-- Entanglement symbol — scaled 7.5x from original icon, flattened lobes -->
-  <!-- Left lobe: x=20–260, y=210–420. Right lobe: x=260–500, y=210–420 -->
-  <!-- Width per lobe: 240, Height: 210 → ratio 1.14:1... -->
-  <!-- Using correct flat lemniscate: control points pulled toward horizontal center -->
   <g filter="url(#glow)">
-    <!-- Left lobe fill — width 240, height 120 → 2:1 ratio -->
-    <path d="M 260,315 C 240,255 20,255 20,315 C 20,375 240,375 260,315"
+    <!-- Left lobe fill — width 240, height 120 → 2:1 ratio, centered at y=345 -->
+    <path d="M 260,345 C 240,285 20,285 20,345 C 20,405 240,405 260,345"
           fill="#7c3aed" opacity="0.1"/>
     <!-- Right lobe fill -->
-    <path d="M 260,315 C 280,255 500,255 500,315 C 500,375 280,375 260,315"
+    <path d="M 260,345 C 280,285 500,285 500,345 C 500,405 280,405 260,345"
           fill="#06b6d4" opacity="0.1"/>
     <!-- Left lobe stroke -->
-    <path d="M 260,315 C 240,255 20,255 20,315 C 20,375 240,375 260,315"
+    <path d="M 260,345 C 240,285 20,285 20,345 C 20,405 240,405 260,345"
           fill="none" stroke="#8b5cf6" stroke-width="8" stroke-linecap="round"/>
     <!-- Right lobe stroke -->
-    <path d="M 260,315 C 280,255 500,255 500,315 C 500,375 280,375 260,315"
+    <path d="M 260,345 C 280,285 500,285 500,345 C 500,405 280,405 260,345"
           fill="none" stroke="#06b6d4" stroke-width="8" stroke-linecap="round"/>
     <!-- Left qubit dot -->
-    <circle cx="20" cy="315" r="15" fill="#8b5cf6"/>
+    <circle cx="20" cy="345" r="15" fill="#8b5cf6"/>
     <!-- Right qubit dot -->
-    <circle cx="500" cy="315" r="15" fill="#22d3ee"/>
+    <circle cx="500" cy="345" r="15" fill="#22d3ee"/>
     <!-- Center crossing -->
-    <circle cx="260" cy="315" r="8" fill="#e2e8f0" opacity="0.75"/>
+    <circle cx="260" cy="345" r="8" fill="#e2e8f0" opacity="0.75"/>
   </g>
 
   <!-- Divider -->
