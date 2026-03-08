@@ -627,6 +627,65 @@
     .cta-section h2 { margin-bottom: 1rem; }
     .cta-section p { color: var(--muted2); margin-bottom: 2.5rem; font-size: 1.05rem; }
 
+    /* ── Contact ── */
+    #contact {
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+    }
+
+    .contact-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card p {
+      color: var(--muted2);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .contact-card ul li {
+      color: var(--muted2);
+      font-size: 0.88rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .contact-card ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #a78bfa;
+    }
+
     /* ── Footer ── */
     footer {
       border-top: 1px solid var(--border);
@@ -663,6 +722,7 @@
       <a href="#capabilities" class="hide-mobile">Capabilities</a>
       <a href="#examples" class="hide-mobile">Examples</a>
       <a href="#qrl" class="hide-mobile">QRL</a>
+      <a href="#contact" class="hide-mobile">Contact</a>
       <a href="https://bell.entangledcode.dev" class="btn btn-outline">Sign in</a>
       <a href="https://bell.entangledcode.dev" class="btn btn-primary">Try Bell</a>
     </div>
@@ -1079,6 +1139,41 @@ result = {
     </div>
   </section>
 
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label">Get in touch</div>
+      <h2>Working on quantum problems?</h2>
+      <p class="section-sub">Whether you're a researcher exploring quantum physics or a team looking to integrate quantum modeling into your workflow — we'd like to hear from you.</p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>For researchers & academics</h3>
+          <p>Using Bell for quantum foundations, sensing, biology, or chemistry research? We're happy to discuss collaboration, custom domain modules, or API access.</p>
+          <ul>
+            <li>Custom QRL domain modules for your research area</li>
+            <li>API access for programmatic use</li>
+            <li>Collaboration on quantum physics modeling</li>
+            <li>Hardware execution via Quandela QPU</li>
+          </ul>
+          <a href="mailto:hello@entangledcode.dev?subject=Research inquiry" class="btn btn-outline">hello@entangledcode.dev</a>
+        </div>
+
+        <div class="contact-card">
+          <h3>For teams & companies</h3>
+          <p>Evaluating Bell for your organisation? We offer dedicated access, custom integrations, and support for teams working on quantum applications.</p>
+          <ul>
+            <li>Dedicated instance for your team</li>
+            <li>Custom suggestion templates for your use case</li>
+            <li>Integration with your existing workflows</li>
+            <li>Priority support and SLA</li>
+          </ul>
+          <a href="mailto:hello@entangledcode.dev?subject=Enterprise inquiry" class="btn btn-outline">hello@entangledcode.dev</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── CTA ── -->
   <section class="cta-section">
     <div class="container">
@@ -1098,8 +1193,8 @@ result = {
       <a href="https://bell.entangledcode.dev">Bell app</a>
       <a href="https://dcoldeira.github.io">Blog</a>
       <a href="https://doi.org/10.5281/zenodo.18292199" target="_blank" rel="noopener">Paper</a>
-      <a href="https://github.com/dcoldeira/quantum-relational-language" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:david@entangledcode.dev">Contact</a>
+      <a href="https://github.com/entangledcode/qrl" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:hello@entangledcode.dev">Contact</a>
     </div>
   </footer>
 
