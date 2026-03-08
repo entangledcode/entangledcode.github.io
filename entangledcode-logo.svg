@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 70" role="img" aria-label="Entangled Code logo">
-  <title>Entangled Code — Quantum AI Platform</title>
+  <title>Entangled Code</title>
   <defs>
     <!-- Gradient for wordmark -->
     <linearGradient id="ecWord" x1="98" y1="0" x2="338" y2="0" gradientUnits="userSpaceOnUse">
@@ -50,9 +50,4 @@
         font-size="23" font-weight="600" letter-spacing="-0.3"
         fill="url(#ecWord)">entangled code</text>
 
-  <!-- Tagline -->
-  <text x="102" y="58"
-        font-family="'Inter', system-ui, -apple-system, sans-serif"
-        font-size="7.5" font-weight="500" letter-spacing="3"
-        fill="#475569">QUANTUM AI PLATFORM</text>
 </svg>
