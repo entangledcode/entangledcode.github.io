@@ -309,7 +309,7 @@
       <div class="card">
         <h3><small>Day job · Geoquip Marine</small>Gio, an assistant over a live laboratory database</h3>
         <p>
-          Claude API tool-use inside GQMLab, the LIMS I built for a UKAS-accredited geotechnical laboratory.
+          LLM tool-use inside GQMLab, the LIMS I built for a UKAS-accredited geotechnical laboratory.
           Natural-language SQL, charts and live report-schema introspection, on a read-only database user
           with query validation and role-gated access. In production for the lab's engineers.
         </p>
@@ -320,7 +320,7 @@
       </div>
 
       <div class="card">
-        <h3><small>Forza7 · SailGenius</small>Marco, a Claude-powered passage planner</h3>
+        <h3><small>Forza7 · SailGenius</small>Marco, an LLM-powered passage planner</h3>
         <p>
           Reasons over live weather, tide and boat-performance data to propose offshore routes.
           Every AI-generated waypoint is validated against real water and depth data before the
@@ -336,7 +336,7 @@
         <h3><small>Independent · 2025</small>Bell, a self-hosted fine-tuned physics assistant</h3>
         <p>
           Qwen3-8B with a LoRA adapter trained on 815 instruction pairs, as a provider-swappable
-          alternative to the Claude API. Sandboxed Python execution, Docker/Caddy deployment,
+          alternative to a hosted LLM API. Sandboxed Python execution, Docker/Caddy deployment,
           GDPR-compliant. Ran live at bell.entangledcode.dev; now offline, code and training data kept.
         </p>
         <div class="card-links">
@@ -347,10 +347,10 @@
       <div class="card">
         <h3><small>Independent · 2026</small>Froe, a local-first coding agent in Go</h3>
         <p>
-          A single static binary for the terminal and Neovim that runs on a 4 GB laptop with no source
-          code leaving the machine. Measured before designed: the autonomous loop lost on a real
-          multi-site edit, so it became small bounded commands with deterministic verification of
-          the model's answer, taking <code>locate</code> from 0/3 to 3/3.
+          A coding agent built for data governance: source code never has to leave the machine, the LAN
+          or the EU. Local open-weight models are the default path, hosted providers are optional
+          adapters, and nothing about a model is compiled in, so the tool survives model churn.
+          A single static Go binary for the terminal and Neovim that runs on a 4 GB laptop.
         </p>
         <div class="card-links">
           <a href="mailto:david@entangledcode.dev?subject=Froe%20code">Code on request</a>
