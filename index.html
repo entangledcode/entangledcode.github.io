@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Entangled Code — David Coldeira</title>
-  <meta name="description" content="Entangled Code — home of QRL, a relations-first quantum programming language built from first principles of information theory and relational physics." />
+  <meta name="description" content="David Coldeira — full-stack Python engineer building production systems with LLMs in them: an agentic assistant over a live laboratory database, a Claude-powered route planner, a self-hosted fine-tuned model, a local-first coding agent. Also home of QRL, a relations-first quantum programming language." />
 
   <link rel="canonical" href="https://entangledcode.dev/"/>
 
@@ -16,13 +16,13 @@
 
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://entangledcode.dev"/>
-  <meta property="og:title" content="Entangled Code — QRL"/>
-  <meta property="og:description" content="QRL is a relations-first quantum programming language. Entanglement as a first-class citizen. Causal structure as a type-level primitive."/>
+  <meta property="og:title" content="Entangled Code — David Coldeira"/>
+  <meta property="og:description" content="Production AI engineering with physics-grade rigour. LLM systems that run in production, and QRL, a relations-first quantum programming language."/>
   <meta property="og:image" content="https://entangledcode.dev/og-image.png"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Entangled Code — QRL"/>
-  <meta name="twitter:description" content="QRL is a relations-first quantum programming language. Entanglement as a first-class citizen. Causal structure as a type-level primitive."/>
+  <meta name="twitter:title" content="Entangled Code — David Coldeira"/>
+  <meta name="twitter:description" content="Production AI engineering with physics-grade rigour. LLM systems that run in production, and QRL, a relations-first quantum programming language."/>
   <meta name="twitter:image" content="https://entangledcode.dev/og-image.png"/>
 
   <style>
@@ -144,7 +144,7 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-size: clamp(2rem, 6vw, 3.4rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.1;
@@ -227,6 +227,22 @@
       border-radius: 4px;
     }
 
+    /* ── Project cards ── */
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .card h3 { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
+    .card h3 small { display: block; font-size: 0.72rem; font-weight: 600; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .card p { font-size: 0.9rem; color: var(--muted2); line-height: 1.6; flex: 1; margin: 0; }
+    .card-links { font-size: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; }
+    .card-links a { color: var(--muted2); border-bottom: 1px solid var(--border); }
+    .card-links a:hover { color: var(--text); border-color: var(--muted); }
+    .posts { list-style: none; margin-top: 1.25rem; }
+    .posts li { padding: 0.85rem 0; border-top: 1px solid var(--border); }
+    .posts li:last-child { border-bottom: 1px solid var(--border); }
+    .posts a { font-weight: 600; }
+    .posts a:hover { color: var(--accent); }
+    .posts span { display: block; font-size: 0.875rem; color: var(--muted2); margin-top: 0.2rem; }
+
     /* ── Footer ── */
     footer {
       border-top: 1px solid var(--border);
@@ -243,6 +259,7 @@
       .nav-links .hide-mobile { display: none; }
       .hero { padding: 4rem 1.5rem 3rem; }
       .section { padding: 3rem 1.5rem; }
+      .cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -254,55 +271,145 @@
       entangled code
     </div>
     <div class="nav-links">
-      <a href="https://github.com/entangledcode/qrl" class="hide-mobile">QRL on GitHub</a>
+      <a href="#ai" class="hide-mobile">AI engineering</a>
+      <a href="#qrl" class="hide-mobile">QRL</a>
       <a href="https://dcoldeira.github.io" class="hide-mobile">Blog</a>
+      <a href="https://github.com/dcoldeira" class="hide-mobile">GitHub</a>
       <a href="mailto:david@entangledcode.dev" class="btn btn-outline">Contact</a>
     </div>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-label">Quantum Relational Language</div>
-    <h1>Relations first.<br><span>Entanglement built in.</span></h1>
+    <div class="hero-label">David Coldeira · Bristol, UK</div>
+    <h1>Production AI engineering.<br><span>Physics-grade rigour.</span></h1>
     <p>
-      QRL is a quantum programming language built from first principles of information theory and relational physics.
-      Describe correlations, derive predictions — causal structure as a type-level primitive.
+      I am a full-stack Python engineer who builds and runs production systems end to end,
+      and I put language models inside them only where their output can be verified.
+      Ten years in software, a physics degree, and a quantum programming language on the side.
     </p>
     <div class="hero-actions">
-      <a href="https://github.com/entangledcode/qrl" class="btn btn-primary">View on GitHub</a>
-      <a href="https://doi.org/10.5281/zenodo.18292199" class="btn btn-outline">Zenodo preprint</a>
+      <a href="#ai" class="btn btn-primary">What I have shipped</a>
+      <a href="https://www.linkedin.com/in/dcoldeira" class="btn btn-outline">LinkedIn</a>
+      <a href="mailto:david@entangledcode.dev" class="btn btn-outline">Email</a>
+    </div>
+  </section>
+
+  <!-- AI engineering -->
+  <section class="section" id="ai">
+    <div class="section-label">AI engineering in production</div>
+    <h2>Language models with a verifier around them</h2>
+    <p>
+      The pattern in everything below is the same: the model does the concentrated reasoning,
+      deterministic code checks the result before it reaches a user or a database, and
+      permissions are enforced by the system rather than by the prompt.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3><small>Day job · Geoquip Marine</small>Gio, an assistant over a live laboratory database</h3>
+        <p>
+          Claude API tool-use inside GQMLab, the LIMS I built for a UKAS-accredited geotechnical laboratory.
+          Natural-language SQL, charts and live report-schema introspection, on a read-only database user
+          with query validation and role-gated access. In production for the lab's engineers.
+        </p>
+        <div class="card-links">
+          <a href="https://dcoldeira.github.io/posts/2026-09-16-llm-production-database/">How the read-only layers work</a>
+          <a href="https://gqmlab.geoquip-marine.com">GQMLab</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><small>Forza7 · SailGenius</small>Marco, a Claude-powered passage planner</h3>
+        <p>
+          Reasons over live weather, tide and boat-performance data to propose offshore routes.
+          Every AI-generated waypoint is validated against real water and depth data before the
+          sailor sees it. Part of a Flutter sailing suite with a FastAPI/PostgreSQL backend.
+        </p>
+        <div class="card-links">
+          <a href="https://dcoldeira.github.io/posts/2026-09-16-llm-verified-execution/">Why the model does not do the physics</a>
+          <a href="https://forza7.dev">forza7.dev</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><small>Independent · 2025</small>Bell, a self-hosted fine-tuned physics assistant</h3>
+        <p>
+          Qwen3-8B with a LoRA adapter trained on 815 instruction pairs, as a provider-swappable
+          alternative to the Claude API. Sandboxed Python execution, Docker/Caddy deployment,
+          GDPR-compliant. Ran live at bell.entangledcode.dev; now offline, code and training data kept.
+        </p>
+        <div class="card-links">
+          <a href="mailto:david@entangledcode.dev?subject=Bell%20code">Code on request</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><small>Independent · 2026</small>Froe, a local-first coding agent in Go</h3>
+        <p>
+          A single static binary for the terminal and Neovim that runs on a 4 GB laptop with no source
+          code leaving the machine. Measured before designed: the autonomous loop lost on a real
+          multi-site edit, so it became small bounded commands with deterministic verification of
+          the model's answer, taking <code>locate</code> from 0/3 to 3/3.
+        </p>
+        <div class="card-links">
+          <a href="mailto:david@entangledcode.dev?subject=Froe%20code">Code on request</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Writing -->
+  <section class="section" id="writing">
+    <div class="section-label">Writing</div>
+    <h2>Notes from running these in production</h2>
+    <ul class="posts">
+      <li>
+        <a href="https://dcoldeira.github.io/posts/2026-09-16-llm-production-database/">Putting an LLM on a Production Database, Read-Only by Construction</a>
+        <span>Four independent layers, only one of which actually matters, and why the prompt is the layer you should trust least.</span>
+      </li>
+      <li>
+        <a href="https://dcoldeira.github.io/posts/2026-09-16-llm-verified-execution/">Don't Let the Model Do the Physics</a>
+        <span>Keep the model to reasoning and let deterministic code own every number that reaches a user.</span>
+      </li>
+    </ul>
+    <div class="links-row">
+      <a href="https://dcoldeira.github.io" class="btn btn-outline">All posts</a>
     </div>
   </section>
 
   <!-- QRL -->
-  <section class="section">
-    <div class="section-label">The Language</div>
+  <section class="section" id="qrl">
+    <div class="section-label">Research</div>
     <h2>QRL — Quantum Relational Language</h2>
     <p>
-      A relations-first approach to quantum computing where entanglement is a first-class citizen, not a derived concept.
+      A relations-first quantum programming language where entanglement is a first-class citizen, not a derived concept.
       The key formal contribution: <strong>causal structure as a type-level primitive</strong>.
-      A program that type-checks as <code>Switch(d)</code> is provably causally nonseparable — a result no existing quantum programming language can state.
+      A program that type-checks as <code>Switch(d)</code> is provably causally nonseparable, a result no existing quantum programming language can state.
     </p>
     <p>
       Implements five foundational papers: process matrices (Oreshkov 2012), causal nonseparability witnesses (Araújo 2015),
-      quantum causal models (Allen 2017), loophole-free Bell tests (Hensen 2015), and categorical quantum mechanics (Coecke & Kissinger 2017).
+      quantum causal models (Allen 2017), loophole-free Bell tests (Hensen 2015), and categorical quantum mechanics (Coecke &amp; Kissinger 2017).
+      Full compiler pipeline from relations to MBQC measurement patterns, with four backends (Perceval, PennyLane, graphix, Qiskit).
       Hardware-verified on Quandela's qpu:belenos photonic QPU (S = 2.61 ± 0.08).
     </p>
     <div class="meta-row">
       <span>~13,600 lines</span>
       <span>896 tests passing</span>
-      <span>24 modules</span>
-      <span>Paper in preparation — QPL 2027</span>
+      <span>31 modules</span>
+      <span>Preprint on Zenodo</span>
     </div>
     <div class="links-row">
       <a href="https://github.com/entangledcode/qrl" class="btn btn-primary">GitHub</a>
       <a href="https://doi.org/10.5281/zenodo.18292199" class="btn btn-outline">Zenodo DOI</a>
-      <a href="https://dcoldeira.github.io" class="btn btn-outline">Blog</a>
+      <a href="https://github.com/dcoldeira/qrl-book" class="btn btn-outline">QRL Book</a>
     </div>
   </section>
 
   <footer>
     <p>
+      <a href="https://github.com/dcoldeira">github.com/dcoldeira</a> &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/dcoldeira">linkedin.com/in/dcoldeira</a> &nbsp;·&nbsp;
       <a href="https://github.com/entangledcode/qrl">entangledcode/qrl</a> &nbsp;·&nbsp;
       <a href="https://doi.org/10.5281/zenodo.18292199">Zenodo</a> &nbsp;·&nbsp;
       <a href="privacy.html">Privacy</a>
