@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Entangled Code — David Coldeira</title>
-  <meta name="description" content="David Coldeira — full-stack Python engineer building production systems with LLMs in them: an agentic assistant over a live laboratory database, an LLM-powered route planner, a self-hosted fine-tuned model, a local-first coding agent built for data residency. Also home of QRL, a relations-first quantum programming language." />
+  <meta name="description" content="David Coldeira — a quantum programming language (QRL), a fine-tuned assistant that runs it live (Bell), and the local-first coding agent used to build both (Froe). Also production AI engineering: an agentic assistant over a live laboratory database, an LLM-powered route planner." />
 
   <link rel="canonical" href="https://entangledcode.dev/"/>
 
@@ -17,12 +17,12 @@
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://entangledcode.dev"/>
   <meta property="og:title" content="Entangled Code — David Coldeira"/>
-  <meta property="og:description" content="Production AI engineering with physics-grade rigour. LLM systems that run in production, and QRL, a relations-first quantum programming language."/>
+  <meta property="og:description" content="A quantum language, a fine-tuned assistant that runs it live, and the coding agent used to build both. Plus production AI engineering with physics-grade rigour."/>
   <meta property="og:image" content="https://entangledcode.dev/og-image.png"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Entangled Code — David Coldeira"/>
-  <meta name="twitter:description" content="Production AI engineering with physics-grade rigour. LLM systems that run in production, and QRL, a relations-first quantum programming language."/>
+  <meta name="twitter:description" content="A quantum language, a fine-tuned assistant that runs it live, and the coding agent used to build both. Plus production AI engineering with physics-grade rigour."/>
   <meta name="twitter:image" content="https://entangledcode.dev/og-image.png"/>
 
   <style>
@@ -227,6 +227,41 @@
       border-radius: 4px;
     }
 
+    /* ── Connected system flow ── */
+    .flow { display: flex; align-items: stretch; gap: 0.5rem; margin-top: 1.75rem; }
+    .flow-step {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem 1.35rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      position: relative;
+    }
+    .flow-num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--primary-glow);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.15rem;
+    }
+    .flow-step h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+    .flow-tag { font-size: 0.7rem; font-weight: 600; color: var(--accent); letter-spacing: 0.04em; text-transform: uppercase; }
+    .flow-step p { font-size: 0.875rem; color: var(--muted2); line-height: 1.6; flex: 1; margin: 0.2rem 0 0; }
+    .flow-arrow {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 1.1rem; flex: 0 0 auto; width: 1.5rem;
+    }
+    @media (max-width: 720px) {
+      .flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); width: auto; padding: 0.15rem 0; }
+    }
+
     /* ── Project cards ── */
     .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
@@ -271,8 +306,8 @@
       entangled code
     </div>
     <div class="nav-links">
-      <a href="#ai" class="hide-mobile">AI engineering</a>
-      <a href="#qrl" class="hide-mobile">QRL</a>
+      <a href="#system" class="hide-mobile">QRL · Bell · Froe</a>
+      <a href="#work" class="hide-mobile">AI engineering</a>
       <a href="https://dcoldeira.github.io" class="hide-mobile">Blog</a>
       <a href="https://github.com/dcoldeira" class="hide-mobile">GitHub</a>
       <a href="mailto:david@entangledcode.dev" class="btn btn-outline">Contact</a>
@@ -282,26 +317,92 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-label">David Coldeira · Bristol, UK</div>
-    <h1>Production AI engineering.<br><span>Physics-grade rigour.</span></h1>
+    <h1>A quantum language.<br><span>An assistant that runs it live.</span></h1>
     <p>
-      I am a full-stack Python engineer who builds and runs production systems end to end,
-      and I put language models inside them only where their output can be verified.
-      Ten years in software, a physics degree, and a quantum programming language on the side.
+      QRL is a relations-first quantum programming language with a type-level soundness result no
+      existing quantum language can state. Bell puts it in front of anyone — plain English in, real
+      QRL code executed, real numbers out, running live today. Froe is the coding agent I built and
+      use to develop both. Ten years in production software and a physics degree underneath all of it.
     </p>
     <div class="hero-actions">
-      <a href="#ai" class="btn btn-primary">What I have shipped</a>
-      <a href="https://www.linkedin.com/in/dcoldeira" class="btn btn-outline">LinkedIn</a>
+      <a href="#system" class="btn btn-primary">See how it fits together</a>
+      <a href="https://bell.entangledcode.dev" class="btn btn-outline">Try Bell</a>
       <a href="mailto:david@entangledcode.dev" class="btn btn-outline">Email</a>
     </div>
   </section>
 
-  <!-- AI engineering -->
-  <section class="section" id="ai">
-    <div class="section-label">AI engineering in production</div>
-    <h2>Language models with a verifier around them</h2>
+  <!-- The connected system: QRL, Bell, Froe -->
+  <section class="section" id="system">
+    <div class="section-label">The connected work</div>
+    <h2>A language, an assistant for it, and the tool that builds both</h2>
     <p>
-      The pattern in everything below is the same: the model does the concentrated reasoning,
-      deterministic code checks the result before it reaches a user or a database, and
+      Three pieces, one practice: describe the physics precisely, make it usable by someone who isn't
+      its author, and build it all with a tool that respects where the code and the data are allowed
+      to live.
+    </p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <h3>QRL</h3>
+        <div class="flow-tag">Relations-first quantum language</div>
+        <p>
+          Causal structure as a type-level primitive. A program that type-checks as <code>Switch(d)</code>
+          is provably causally nonseparable — a result no existing quantum programming language can state.
+        </p>
+        <div class="card-links"><a href="https://github.com/entangledcode/qrl">GitHub</a></div>
+      </div>
+      <div class="flow-arrow" aria-hidden="true">→</div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <h3>Bell</h3>
+        <div class="flow-tag">Fine-tuned assistant, live now</div>
+        <p>
+          Plain English in, real QRL code executed, real numbers out — not the model guessing a number.
+          Provider-swappable: running on Mistral (EU-hosted) today, a self-hosted fine-tune in standby.
+        </p>
+        <div class="card-links"><a href="https://bell.entangledcode.dev">Try it — bell.entangledcode.dev</a></div>
+      </div>
+      <div class="flow-arrow" aria-hidden="true">→</div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <h3>Froe</h3>
+        <div class="flow-tag">The tool that builds both</div>
+        <p>
+          A local-first coding agent in Go. Source never has to leave the machine, the LAN, or the EU.
+          A single static binary for the terminal and Neovim, dogfooded daily on QRL and Bell themselves.
+        </p>
+        <div class="card-links"><a href="mailto:david@entangledcode.dev?subject=Froe%20code">Code on request</a></div>
+      </div>
+    </div>
+
+    <p style="margin-top:2rem">
+      QRL implements five foundational papers — process matrices (Oreshkov 2012), causal nonseparability
+      witnesses (Araújo 2015), quantum causal models (Allen 2017), loophole-free Bell tests (Hensen 2015),
+      and categorical quantum mechanics (Coecke &amp; Kissinger 2017) — with a full compiler pipeline from
+      relations to MBQC measurement patterns across four backends (Perceval, PennyLane, graphix, Qiskit),
+      hardware-verified on Quandela's qpu:belenos photonic QPU (S = 2.61 ± 0.08).
+    </p>
+    <div class="meta-row">
+      <span>~13,600 lines</span>
+      <span>896 tests passing</span>
+      <span>31 modules</span>
+      <span>Preprint on Zenodo</span>
+    </div>
+    <div class="links-row">
+      <a href="https://github.com/entangledcode/qrl" class="btn btn-primary">QRL on GitHub</a>
+      <a href="https://doi.org/10.5281/zenodo.18292199" class="btn btn-outline">Zenodo DOI</a>
+      <a href="https://github.com/dcoldeira/qrl-book" class="btn btn-outline">QRL Book</a>
+    </div>
+  </section>
+
+  <!-- Production AI engineering elsewhere -->
+  <section class="section" id="work">
+    <div class="section-label">Production AI engineering</div>
+    <h2>Language models with a verifier around them, for other people's systems</h2>
+    <p>
+      Same pattern as above, applied at a day job and a side project: the model does the concentrated
+      reasoning, deterministic code checks the result before it reaches a user or a database, and
       permissions are enforced by the system rather than by the prompt.
     </p>
 
@@ -331,34 +432,6 @@
           <a href="https://forza7.dev">forza7.dev</a>
         </div>
       </div>
-
-      <div class="card">
-        <h3><small>Independent · 2025–26</small>Bell, a quantum physics reasoning assistant</h3>
-        <p>
-          Plain English in, real numbers out — questions about entanglement and causal structure
-          answered by generating and executing real QRL code, not by the model guessing a number.
-          Provider-swappable by design: running on Mistral (EU-hosted) today, a self-hosted
-          fine-tuned Qwen3-8B (815 training pairs) in standby. Sandboxed execution, Podman/Caddy
-          deployment on Hetzner.
-        </p>
-        <div class="card-links">
-          <a href="https://bell.entangledcode.dev">Try it — bell.entangledcode.dev</a>
-          <a href="mailto:david@entangledcode.dev?subject=Bell%20code">Code on request</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3><small>Independent · 2026</small>Froe, a local-first coding agent in Go</h3>
-        <p>
-          A coding agent built for data governance: source code never has to leave the machine, the LAN
-          or the EU. Local open-weight models are the default path, hosted providers are optional
-          adapters, and nothing about a model is compiled in, so the tool survives model churn.
-          A single static Go binary for the terminal and Neovim that runs on a 4 GB laptop.
-        </p>
-        <div class="card-links">
-          <a href="mailto:david@entangledcode.dev?subject=Froe%20code">Code on request</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -378,34 +451,6 @@
     </ul>
     <div class="links-row">
       <a href="https://dcoldeira.github.io" class="btn btn-outline">All posts</a>
-    </div>
-  </section>
-
-  <!-- QRL -->
-  <section class="section" id="qrl">
-    <div class="section-label">Research</div>
-    <h2>QRL — Quantum Relational Language</h2>
-    <p>
-      A relations-first quantum programming language where entanglement is a first-class citizen, not a derived concept.
-      The key formal contribution: <strong>causal structure as a type-level primitive</strong>.
-      A program that type-checks as <code>Switch(d)</code> is provably causally nonseparable, a result no existing quantum programming language can state.
-    </p>
-    <p>
-      Implements five foundational papers: process matrices (Oreshkov 2012), causal nonseparability witnesses (Araújo 2015),
-      quantum causal models (Allen 2017), loophole-free Bell tests (Hensen 2015), and categorical quantum mechanics (Coecke &amp; Kissinger 2017).
-      Full compiler pipeline from relations to MBQC measurement patterns, with four backends (Perceval, PennyLane, graphix, Qiskit).
-      Hardware-verified on Quandela's qpu:belenos photonic QPU (S = 2.61 ± 0.08).
-    </p>
-    <div class="meta-row">
-      <span>~13,600 lines</span>
-      <span>896 tests passing</span>
-      <span>31 modules</span>
-      <span>Preprint on Zenodo</span>
-    </div>
-    <div class="links-row">
-      <a href="https://github.com/entangledcode/qrl" class="btn btn-primary">GitHub</a>
-      <a href="https://doi.org/10.5281/zenodo.18292199" class="btn btn-outline">Zenodo DOI</a>
-      <a href="https://github.com/dcoldeira/qrl-book" class="btn btn-outline">QRL Book</a>
     </div>
   </section>
 
