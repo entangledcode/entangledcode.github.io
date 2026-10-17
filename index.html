@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Entangled Code — David Coldeira</title>
-  <meta name="description" content="David Coldeira — a quantum programming language (QRL), a fine-tuned assistant that runs it live (Bell), and the local-first coding agent used to build both (Froe). Also production AI engineering: an agentic assistant over a live laboratory database, an LLM-powered route planner." />
+  <meta name="description" content="QRL, a relations-first quantum programming language where causal structure is a type-level primitive, and Bell, an assistant that runs it. Research by David Coldeira." />
 
   <link rel="canonical" href="https://entangledcode.dev/"/>
 
@@ -17,12 +17,12 @@
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://entangledcode.dev"/>
   <meta property="og:title" content="Entangled Code — David Coldeira"/>
-  <meta property="og:description" content="A quantum language, a fine-tuned assistant that runs it live, and the coding agent used to build both. Plus production AI engineering with physics-grade rigour."/>
+  <meta property="og:description" content="QRL, a relations-first quantum programming language where causal structure is a type-level primitive, and Bell, an assistant that runs it."/>
   <meta property="og:image" content="https://entangledcode.dev/og-image.png"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Entangled Code — David Coldeira"/>
-  <meta name="twitter:description" content="A quantum language, a fine-tuned assistant that runs it live, and the coding agent used to build both. Plus production AI engineering with physics-grade rigour."/>
+  <meta name="twitter:description" content="QRL, a relations-first quantum programming language where causal structure is a type-level primitive, and Bell, an assistant that runs it."/>
   <meta name="twitter:image" content="https://entangledcode.dev/og-image.png"/>
 
   <style>
@@ -306,8 +306,7 @@
       entangled code
     </div>
     <div class="nav-links">
-      <a href="#system" class="hide-mobile">QRL · Bell · Froe</a>
-      <a href="#work" class="hide-mobile">AI engineering</a>
+      <a href="#system" class="hide-mobile">QRL</a>
       <a href="https://dcoldeira.github.io" class="hide-mobile">Blog</a>
       <a href="https://github.com/dcoldeira" class="hide-mobile">GitHub</a>
       <a href="mailto:david@entangledcode.dev" class="btn btn-outline">Contact</a>
@@ -321,11 +320,11 @@
     <p>
       QRL is a relations-first quantum programming language with a type-level soundness result no
       existing quantum language can state. Bell puts it in front of anyone — plain English in, real
-      QRL code executed, real numbers out, running live today. Froe is the coding agent I built and
-      use to develop both. Ten years in production software and a physics degree underneath all of it.
+      QRL code executed, real numbers out. Both are open research I work on in my own time, built
+      with Froe, an open-source coding agent.
     </p>
     <div class="hero-actions">
-      <a href="#system" class="btn btn-primary">See how it fits together</a>
+      <a href="#system" class="btn btn-primary">About QRL</a>
       <a href="https://bell.entangledcode.dev" class="btn btn-outline">Try Bell</a>
       <a href="mailto:david@entangledcode.dev" class="btn btn-outline">Email</a>
     </div>
@@ -333,7 +332,7 @@
 
   <!-- The connected system: QRL, Bell, Froe -->
   <section class="section" id="system">
-    <div class="section-label">The connected work</div>
+    <div class="section-label">The research</div>
     <h2>A language, an assistant for it, and the tool that builds both</h2>
     <p>
       Three pieces, one practice: describe the physics precisely, make it usable by someone who isn't
@@ -367,12 +366,12 @@
       <div class="flow-step">
         <div class="flow-num">3</div>
         <h3>Froe</h3>
-        <div class="flow-tag">The tool that builds both</div>
+        <div class="flow-tag">The open-source tool behind both</div>
         <p>
           A local-first coding agent in Go. Source never has to leave the machine, the LAN, or the EU.
-          A single static binary for the terminal and Neovim, dogfooded daily on QRL and Bell themselves.
+          A single static binary for the terminal and Neovim, used to build QRL and Bell.
         </p>
-        <div class="card-links"><a href="mailto:david@entangledcode.dev?subject=Froe%20code">Code on request</a></div>
+        <div class="card-links"><a href="https://github.com/dcoldeira/froe">GitHub</a></div>
       </div>
     </div>
 
@@ -384,8 +383,8 @@
       hardware-verified on Quandela's qpu:belenos photonic QPU (S = 2.61 ± 0.08).
     </p>
     <div class="meta-row">
-      <span>~13,600 lines</span>
-      <span>896 tests passing</span>
+      <span>~15,100 lines</span>
+      <span>968 tests passing</span>
       <span>31 modules</span>
       <span>Preprint on Zenodo</span>
     </div>
@@ -396,49 +395,10 @@
     </div>
   </section>
 
-  <!-- Production AI engineering elsewhere -->
-  <section class="section" id="work">
-    <div class="section-label">Production AI engineering</div>
-    <h2>Language models with a verifier around them, for other people's systems</h2>
-    <p>
-      Same pattern as above, applied at a day job and a side project: the model does the concentrated
-      reasoning, deterministic code checks the result before it reaches a user or a database, and
-      permissions are enforced by the system rather than by the prompt.
-    </p>
-
-    <div class="cards">
-      <div class="card">
-        <h3><small>Day job · Geoquip Marine</small>Gio, an assistant over a live laboratory database</h3>
-        <p>
-          LLM tool-use inside GQMLab, the LIMS I built for a UKAS-accredited geotechnical laboratory.
-          Natural-language SQL, charts and live report-schema introspection, on a read-only database user
-          with query validation and role-gated access. In production for the lab's engineers.
-        </p>
-        <div class="card-links">
-          <a href="https://dcoldeira.github.io/posts/2026-09-16-llm-production-database/">How the read-only layers work</a>
-          <a href="https://gqmlab.geoquip-marine.com">GQMLab</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3><small>Forza7 · SailGenius</small>Marco, an LLM-powered passage planner</h3>
-        <p>
-          Reasons over live weather, tide and boat-performance data to propose offshore routes.
-          Every AI-generated waypoint is validated against real water and depth data before the
-          sailor sees it. Part of a Flutter sailing suite with a FastAPI/PostgreSQL backend.
-        </p>
-        <div class="card-links">
-          <a href="https://dcoldeira.github.io/posts/2026-09-16-llm-verified-execution/">Why the model does not do the physics</a>
-          <a href="https://forza7.dev">forza7.dev</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Writing -->
   <section class="section" id="writing">
     <div class="section-label">Writing</div>
-    <h2>Notes from running these in production</h2>
+    <h2>Notes on putting language models behind a verifier</h2>
     <ul class="posts">
       <li>
         <a href="https://dcoldeira.github.io/posts/2026-09-16-llm-production-database/">Putting an LLM on a Production Database, Read-Only by Construction</a>
